@@ -38,7 +38,7 @@ def getSingleServer(server, query):
         if not "challenge" in dct or challenge != dct["challenge"]:
             return None
         return dct
-    except socket.timeout:
+    except (socket.timeout, UnicodeDecodeError):
         return None
 
 def sendMsg(address, message, expectEot=False):
