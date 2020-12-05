@@ -1,5 +1,6 @@
 import multiprocessing
 import os
+import re
 import socket
 import struct
 from datetime import datetime
@@ -37,6 +38,9 @@ def getSingleServer(server, query):
         dct["ip"], dct["port"] = server
         if not "challenge" in dct or challenge != dct["challenge"]:
             return None
+        if "hostname" in dct:
+            # This regex removes color tags from the hostname
+            dct["hostname"] = re.compile(r"\^[\d:;]").sub("", dct["hostname"])
         return dct
     except (socket.timeout, UnicodeDecodeError):
         return None

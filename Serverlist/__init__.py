@@ -13,8 +13,8 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY="dev",
         MASTER_SERVER=("master.xlabs.dev", 20810),
-        #MASTER_SERVER=("cod4master.activision.com", 20810),
         MASTER_QUERY="getservers IW6 1 full empty",
+        #MASTER_SERVER=("cod4master.activision.com", 20810),
         #MASTER_QUERY="getservers IW3 full empty",
         SERVER_INFO="getinfo {challenge}",
         SCHEDULER_API_ENABLED=True,
