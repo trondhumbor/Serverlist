@@ -52,6 +52,6 @@ def sendMsg(address, message, expectEot=False):
     sock.connect(address)
     sock.send(queryString)
     response = sock.recv(8192)
-    while expectEot and b"EOT" not in response and b"EOF" not in response:
+    while expectEot and not any(x in response for x in [b"EOT", b"EOF"]):
         response += sock.recv(8192)
     return response
